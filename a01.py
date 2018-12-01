@@ -5,7 +5,7 @@ with open('input01.txt') as f:
     for line in f:
         num = int(line)
         nums.append(num)
-        freq += int(num)
+        freq += num
 print(freq)
 
 freq = 0
