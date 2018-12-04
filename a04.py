@@ -19,7 +19,7 @@ minutes = Counter()
 for minute in range(0, 60):
     for r in ranges:
         if minute in r:
-            minutes.update([minute])
+            minutes[minute] += 1
 
 print(minutes.most_common(1)[0][0] * max_guard)
 
@@ -28,6 +28,6 @@ for guard, ranges in guards.items():
     for r in ranges:
         for minute in range(0, 60):
             if minute in r:
-                cnt.update([(guard, minute)])
+                cnt[guard, minute] += 1
 max_guard, max_minute = cnt.most_common(1)[0][0]
 print(max_guard*max_minute)

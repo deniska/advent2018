@@ -16,7 +16,7 @@ with open(fname) as f:
 for id, x, y, w, h in claims:
     for xx in range(x, x+w):
         for yy in range(y, y+h):
-            claimed.update([(xx, yy)])
+            claimed[xx, yy] += 1
 claimed_cnt = 0
 for v in claimed.values():
     if v > 1:
