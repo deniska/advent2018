@@ -1,11 +1,10 @@
 from string import ascii_lowercase, ascii_uppercase
-import re
 
 with open('input05.txt') as f:
     text = f.read().strip()
 #text = 'dabAcCaCBAcCcaDA'
 
-def react(text, ignore=''):
+def react(text):
     text = 'ж' + text
     left_idx = 1
     right_idx = 2
@@ -23,13 +22,15 @@ def react(text, ignore=''):
             continue
         right_idx += 1
         left_idx = right_idx - 1
-    return length - len(skips) - 1
+    new_string = ''.join(c for i, c in enumerate(text) if i not in skips)
+    return new_string[1:], length - len(skips) - 1
 
-print(react(text))
+text, r = react(text)
+print(r)
 
 sizes = []
 for l, u in zip(ascii_lowercase, ascii_uppercase):
-    shorter_text = re.sub(f'{l}|{u}', '', text)
-    sizes.append(react(shorter_text))
+    shorter_text = text.replace(l, '').replace(u, '')
+    sizes.append(react(shorter_text)[1])
 
 print(min(sizes))
