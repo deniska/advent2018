@@ -15,12 +15,13 @@ def react(text):
             text = text.replace(r, '')
         if old_len == len(text):
             break
-    return len(text)
+    return text, len(text)
+text, l = react(text)
 
-print(react(text))
+print(l)
 sizes = []
 for l, u in zip(ascii_lowercase, ascii_uppercase):
     shorter_text = text.replace(l, '').replace(u, '')
-    sizes.append(react(shorter_text))
+    sizes.append(react(shorter_text)[1])
 
 print(min(sizes))
