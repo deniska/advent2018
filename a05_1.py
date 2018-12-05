@@ -1,9 +1,5 @@
 from string import ascii_lowercase, ascii_uppercase
 
-with open('input05.txt') as f:
-    text = f.read().strip()
-#text = 'dabAcCaCBAcCcaDA'
-
 def react(text):
     text = 'ж' + text
     left_idx = 1
@@ -25,12 +21,18 @@ def react(text):
     new_string = ''.join(c for i, c in enumerate(text) if i not in skips)
     return new_string[1:], length - len(skips) - 1
 
-text, r = react(text)
-print(r)
+def main():
+    with open('input05.txt') as f:
+        text = f.read().strip()
 
-sizes = []
-for l, u in zip(ascii_lowercase, ascii_uppercase):
-    shorter_text = text.replace(l, '').replace(u, '')
-    sizes.append(react(shorter_text)[1])
+    text, r = react(text)
+    print(r)
 
-print(min(sizes))
+    sizes = []
+    for l, u in zip(ascii_lowercase, ascii_uppercase):
+        shorter_text = text.replace(l, '').replace(u, '')
+        sizes.append(react(shorter_text)[1])
+    print(min(sizes))
+
+if __name__ == '__main__':
+    main()
