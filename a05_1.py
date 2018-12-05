@@ -6,8 +6,9 @@ with open('input05.txt') as f:
 #text = 'dabAcCaCBAcCcaDA'
 
 def react(text, ignore=''):
-    left_idx = 0
-    right_idx = 1
+    text = 'ж' + text
+    left_idx = 1
+    right_idx = 2
     length = len(text)
     skips = set()
     while right_idx < length:
@@ -22,7 +23,7 @@ def react(text, ignore=''):
             continue
         right_idx += 1
         left_idx = right_idx - 1
-    return length - len(skips)
+    return length - len(skips) - 1
 
 print(react(text))
 
