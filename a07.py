@@ -28,7 +28,7 @@ def solve2(puzzle):
         for n in g:
             if n in workers:
                 continue
-            if not list(g.predecessors(n)):
+            if not list(g.predecessors(n)) and not n in queue:
                 queue.append(n)
         while len(workers) < max_workers and queue:
             n = queue.popleft()
