@@ -9,7 +9,6 @@ def solve(puzzle):
     return ''.join(nx.algorithms.dag.lexicographical_topological_sort(g))
 
 def solve2(puzzle):
-    # TODO: make it work
     max_workers = 5
     baseline = 60
     g = nx.DiGraph()
@@ -25,9 +24,12 @@ def solve2(puzzle):
         for k, v in list(workers.items()):
             if v == 0:
                 workers.pop(k)
-                successors = list(g.successors(k))
                 g.remove_node(k)
-                queue.extend(s for s in successors if not list(g.predecessors(s)))
+        for n in g:
+            if n in workers:
+                continue
+            if not list(g.predecessors(n)) and not n in queue:
+                queue.append(n)
         while len(workers) < max_workers and queue:
             n = queue.popleft()
             workers[n] = baseline + ord(n) - ord('A') + 1
