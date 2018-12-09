@@ -4,20 +4,20 @@ from collections import Counter
 def solve(elves, marbles):
     scores = Counter()
     ring = [0]
-    elve = 0
+    elf = 0
     cursor = 0
     cur_marble = 1
     while cur_marble < marbles:
         if cur_marble % 23 == 0:
-            scores[elve] += cur_marble
+            scores[elf] += cur_marble
             cursor = (cursor - 7) % len(ring)
-            scores[elve] += ring.pop(cursor)
+            scores[elf] += ring.pop(cursor)
         else:
             cursor = (cursor + 2) % len(ring)
             ring.insert(cursor, cur_marble)
-        #print(f'[{elve+1}] {ring} ({ring[cursor]})')
+        #print(f'[{elf+1}] {ring} ({ring[cursor]})')
         cur_marble += 1
-        elve = (elve + 1) % elves
+        elf = (elf + 1) % elves
     return max(scores.values())
 
 def main(argv):

@@ -4,19 +4,19 @@ from collections import Counter, deque
 def solve(elves, marbles):
     scores = Counter()
     ring = deque([0])
-    elve = 0
+    elf = 0
     cur_marble = 1
     while cur_marble < marbles:
         if cur_marble % 23 == 0:
-            scores[elve] += cur_marble
+            scores[elf] += cur_marble
             ring.rotate(7)
-            scores[elve] += ring.popleft()
+            scores[elf] += ring.popleft()
         else:
             ring.rotate(-2)
             ring.appendleft(cur_marble)
-        #print(f'[{elve+1}] {ring} ({ring[cursor]})')
+        #print(f'[{elf+1}] {ring} ({ring[cursor]})')
         cur_marble += 1
-        elve = (elve + 1) % elves
+        elf = (elf + 1) % elves
     return max(scores.values())
 
 def main(argv):
