@@ -9,7 +9,7 @@ def solve(initial, states, gens=20):
     for s, p in states.items():
         if p != '#':
             continue
-        plant_states.add(tuple(True if c == '#' else False for c in s))
+        plant_states.add(tuple(c == '#' for c in s))
     for g in range(gens):
         next_state = set()
         for i in range(min(state)-5, max(state)+5):
