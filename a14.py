@@ -26,8 +26,12 @@ def solve2(num):
     while True:
         d = recipes[e0] + recipes[e1]
         if d >= 10:
-            recipes.extend([1, d-10])
+            recipes.append(1)
             last.append(1)
+            if last == dnum:
+                break
+            recipes.append(d-10)
+            last.append(d-10)
         else:
             recipes.append(d)
             last.append(d)
